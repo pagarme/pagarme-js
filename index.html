@@ -1,68 +1,91 @@
 <html>
 <head>
 <title>Example page</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="pagarme.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<!-- <script src="pagarme.js"></script> -->
+<script src="pagarme-min.js"></script>
 
 <script>
-$(document).ready(function() {
+
+var $ = function (index) {
+	if ('undefined' == typeof(index)) {
+	    return;
+	}
+
+	index = index.replace('#','');
+	
+	return document.getElementById(index);
+}
+
+window.onload = function() {
 	PagarMe.encryption_key = "ek_test_Ec8KhxISQ1tug1b8bCGxC2nXfxqRmk";
 	// Caso você deseje habilitar o antifraude para essa transação:
 
 	var form = $("#payment_form");
 
-	form.submit(function(event) {
-		var creditCard = new PagarMe.creditCard();
+	form.onsubmit = function () {
+		var creditCard = new PagarMe.creditCard(),
+			hasErrors = false,
+			field;
+
 		creditCard.fillFromForm(form);
 
 		var fieldErrors = creditCard.fieldErrors();
 
-		var hasErrors = false;
-		for(var field in fieldErrors) { hasErrors = true; break; }
+		for (field in fieldErrors) {
+			hasErrors = true; 
+			break;
+		}
 
-		$("#payment_form #card_number").css('border', '3px solid green');
-		$("#payment_form #card_holder_name").css('border', '3px solid green');
-		$("#payment_form #card_expiration_month").css('border', '3px solid green');
-		$("#payment_form #card_expiration_year").css('border', '3px solid green');
-		$("#payment_form #card_cvv").css('border', '3px solid green');
+		$("#card_number").style.borderColor =  'limegreen';
+		$("#card_holder_name").style.borderColor =  'limegreen';
+		$("#card_expiration_month").style.borderColor =  'limegreen';
+		$("#card_expiration_year").style.borderColor =  'limegreen';
+		$("#card_cvv").style.borderColor =  'limegreen';
 
-		if(hasErrors) {
-			for(var fieldName in fieldErrors) {
-				var field = $(form.find("#" + fieldName)[0]);
-				field.css('border', '3px solid red');
+		if (hasErrors) {
+			for (fieldName in fieldErrors) {
+				$("#" + fieldName).style.borderColor = 'red';
 			}
 
 			return false;
 		}
 
-		creditCard.generateHash(function(cardHash) {
-			console.log(cardHash);
-			form.append($('<input type="hidden" name="card_hash"/>').val(cardHash));
+		creditCard.generateHash (function (cardHash) {
+			var input = document.createElement("input");
+			
+			input.setAttribute("type", "hidden");
+			input.setAttribute("name", "card_hash");
+			input.setAttribute("id", "card_hash");
+			input.setAttribute("value", cardHash);
+
+			form.appendChild(input);
+			
 			PagarMe.removeCardFieldsFromForm(form);
-			form.get(0).submit();
+			form.submit();
 		});
 
 		return false;
-	});
-});
+	};
+};
 </script>
 </head>
 <body>
 <form id="payment_form" action="" method="GET">
-	Card number: <input type="text" id="card_number"/>
+	<label for="card_number">Card number:</label> <input type="text" id="card_number" value="4901720080344448" />
 	<br/>
-	Card holder name: <input type="text" id="card_holder_name"/>
+	<label for="card_holder_name">Card holder name:</label> <input type="text" id="card_holder_name" value="teste" />
 	<br/>
-	Card expiration month: <input type="text" id="card_expiration_month"/>
+	<label for="card_expiration_month">Card expiration month:</label> <input type="text" id="card_expiration_month" value="02" />
 	<br/>
-		Card expiration year: <input type="text" id="card_expiration_year"/>
-		<br/>
-		Card security code: <input type="text" id="card_cvv"/>
-		<br/>
-		<div id="field_errors">
-		</div>
-		<br/>
-		<input type="submit"></input>
+	<label for="card_expiration_year">Card expiration year:</label> <input type="text" id="card_expiration_year" value="18" />
+	<br/>
+	<label for="card_cvv">Card security code:</label> <input type="text" id="card_cvv" value="123" />
+	<br/>
+	<div id="field_errors">
+	</div>
+	<br/>
+	<input type="submit"></input>
 	</form>
 	</body>
 	</html>
