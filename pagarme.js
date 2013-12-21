@@ -6,7 +6,7 @@ var dbits;
 
 // JavaScript engine analysis
 var canary = 0xdeadbeefcafe;
-var j_lm = ((canary & 0xffffff) == 0xefcafe);
+var j_lm = ((canary & 0xffffff) === 0xefcafe);
 
 // (public) Constructor
 
@@ -95,7 +95,7 @@ BigInteger.prototype.F2 = 2 * dbits - BI_FP;
 
 // Digit conversions
 var BI_RM = "0123456789abcdefghijklmnopqrstuvwxyz";
-var BI_RC = new Array();
+var BI_RC = [];
 var rr, vv;
 rr = "0".charCodeAt(0);
 for (vv = 0; vv <= 9; ++vv) BI_RC[rr++] = vv;
@@ -165,7 +165,7 @@ function bnpFromString(s, b) {
             continue;
         }
         mi = false;
-        if (sh == 0) this[this.t++] = x;
+        if (sh === 0) this[this.t++] = x;
         else if (sh + k > this.DB) {
             this[this.t - 1] |= (x & ((1 << (this.DB - sh)) - 1)) << sh;
             this[this.t++] = (x >> (this.DB - sh));
@@ -174,7 +174,7 @@ function bnpFromString(s, b) {
         sh += k;
         if (sh >= this.DB) sh -= this.DB;
     }
-    if (k == 8 && (s[0] & 0x80) != 0) {
+    if (k == 8 && (s[0] & 0x80) !== 0) {
         this.s = -1;
         if (sh > 0) this[this.t - 1] |= ((1 << (this.DB - sh)) - 1) << sh;
     }
@@ -248,11 +248,11 @@ function bnAbs() {
 
 function bnCompareTo(a) {
     var r = this.s - a.s;
-    if (r != 0) return r;
+    if (r !== 0) return r;
     var i = this.t;
     r = i - a.t;
-    if (r != 0) return r;
-    while (--i >= 0) if ((r = this[i] - a[i]) != 0) return r;
+    if (r !== 0) return r;
+    while (--i >= 0) if ((r = this[i] - a[i]) !== 0) return r;
     return 0;
 }
 
@@ -261,23 +261,23 @@ function bnCompareTo(a) {
 function nbits(x) {
     var r = 1,
         t;
-    if ((t = x >>> 16) != 0) {
+    if ((t = x >>> 16) !== 0) {
         x = t;
         r += 16;
     }
-    if ((t = x >> 8) != 0) {
+    if ((t = x >> 8) !== 0) {
         x = t;
         r += 8;
     }
-    if ((t = x >> 4) != 0) {
+    if ((t = x >> 4) !== 0) {
         x = t;
         r += 4;
     }
-    if ((t = x >> 2) != 0) {
+    if ((t = x >> 2) !== 0) {
         x = t;
         r += 2;
     }
-    if ((t = x >> 1) != 0) {
+    if ((t = x >> 1) !== 0) {
         x = t;
         r += 1;
     }
@@ -447,7 +447,7 @@ function bnpDivRemTo(m, q, r) {
     }
     var ys = y.t;
     var y0 = y[ys - 1];
-    if (y0 == 0) return;
+    if (y0 === 0) return;
     var yt = y0 * (1 << this.F1) + ((ys > 1) ? y[ys - 2] >> this.F2 : 0);
     var d1 = this.FV / yt,
         d2 = (1 << this.F1) / yt,
@@ -540,7 +540,7 @@ Classic.prototype.sqrTo = cSqrTo;
 function bnpInvDigit() {
     if (this.t < 1) return 0;
     var x = this[0];
-    if ((x & 1) == 0) return 0;
+    if ((x & 1) === 0) return 0;
     var y = x & 3; // y == 1/x mod 2^2
     y = (y * (2 - (x & 0xf) * y)) & 0xf; // y == 1/x mod 2^4
     y = (y * (2 - (x & 0xff) * y)) & 0xff; // y == 1/x mod 2^8
@@ -628,7 +628,7 @@ Montgomery.prototype.sqrTo = montSqrTo;
 // (protected) true iff this is even
 
 function bnpIsEven() {
-    return ((this.t > 0) ? (this[0] & 1) : this.s) == 0;
+    return ((this.t > 0) ? (this[0] & 1) : this.s) === 0;
 }
 
 // (protected) this^e, e < 2^32, doing sqr and mul with "r" (HAC 14.79)
@@ -703,10 +703,10 @@ function bnClone() {
 function bnIntValue() {
     if (this.s < 0) {
         if (this.t == 1) return this[0] - this.DV;
-        else if (this.t == 0) return -1;
+        else if (this.t === 0) return -1;
     }
     else if (this.t == 1) return this[0];
-    else if (this.t == 0) return 0;
+    else if (this.t === 0) return 0;
     // assumes 16 < DB < 32
     return ((this[1] & ((1 << (32 - this.DB)) - 1)) << this.DB) | this[0];
 }
@@ -714,13 +714,13 @@ function bnIntValue() {
 // (public) return value as byte
 
 function bnByteValue() {
-    return (this.t == 0) ? this.s : (this[0] << 24) >> 24;
+    return (this.t === 0) ? this.s : (this[0] << 24) >> 24;
 }
 
 // (public) return value as short (assumes DB>=16)
 
 function bnShortValue() {
-    return (this.t == 0) ? this.s : (this[0] << 16) >> 16;
+    return (this.t === 0) ? this.s : (this[0] << 16) >> 16;
 }
 
 // (protected) return x s.t. r^x < DV
@@ -729,7 +729,7 @@ function bnpChunkSize(r) {
     return Math.floor(Math.LN2 * this.DB / Math.log(r));
 }
 
-// (public) 0 if this == 0, 1 if this > 0
+// (public) 0 if this === 0, 1 if this > 0
 
 function bnSigNum() {
     if (this.s < 0) return -1;
@@ -741,7 +741,7 @@ function bnSigNum() {
 
 function bnpToRadix(b) {
     if (b == null) b = 10;
-    if (this.signum() == 0 || b < 2 || b > 36) return "0";
+    if (this.signum() === 0 || b < 2 || b > 36) return "0";
     var cs = this.chunkSize(b);
     var a = Math.pow(b, cs);
     var d = nbv(a),
@@ -760,7 +760,7 @@ function bnpToRadix(b) {
 
 function bnpFromRadix(s, b) {
     this.fromInt(0);
-    if (b == null) b = 10;
+    if (b === null) b = 10;
     var cs = this.chunkSize(b);
     var d = Math.pow(b, cs),
         mi = false,
@@ -769,7 +769,7 @@ function bnpFromRadix(s, b) {
     for (var i = 0; i < s.length; ++i) {
         var x = intAt(s, i);
         if (x < 0) {
-            if (s.charAt(i) == "-" && this.signum() == 0) mi = true;
+            if (s.charAt(i) == "-" && this.signum() === 0) mi = true;
             continue;
         }
         w = b * w + x;
@@ -806,7 +806,7 @@ function bnpFromNumber(a, b, c) {
     }
     else {
         // new BigInteger(int,RNG)
-        var x = new Array(),
+        var x = [],
             t = a & 7;
         x.length = (a >> 3) + 1;
         b.nextBytes(x);
@@ -820,7 +820,7 @@ function bnpFromNumber(a, b, c) {
 
 function bnToByteArray() {
     var i = this.t,
-        r = new Array();
+        r = [];
     r[0] = this.s;
     var p = this.DB - (i * this.DB) % 8,
         d, k = 0;
@@ -838,8 +838,8 @@ function bnToByteArray() {
                     --i;
                 }
             }
-            if ((d & 0x80) != 0) d |= -256;
-            if (k == 0 && (this.s & 0x80) != (d & 0x80))++k;
+            if ((d & 0x80) !== 0) d |= -256;
+            if (k === 0 && (this.s & 0x80) != (d & 0x80))++k;
             if (k > 0 || d != this.s) r[k++] = d;
         }
     }
@@ -847,7 +847,7 @@ function bnToByteArray() {
 }
 
 function bnEquals(a) {
-    return (this.compareTo(a) == 0);
+    return (this.compareTo(a) === 0);
 }
 
 function bnMin(a) {
@@ -956,25 +956,25 @@ function bnShiftRight(n) {
 // return index of lowest 1-bit in x, x < 2^31
 
 function lbit(x) {
-    if (x == 0) return -1;
+    if (x === 0) return -1;
     var r = 0;
-    if ((x & 0xffff) == 0) {
+    if ((x & 0xffff) === 0) {
         x >>= 16;
         r += 16;
     }
-    if ((x & 0xff) == 0) {
+    if ((x & 0xff) === 0) {
         x >>= 8;
         r += 8;
     }
-    if ((x & 0xf) == 0) {
+    if ((x & 0xf) === 0) {
         x >>= 4;
         r += 4;
     }
-    if ((x & 3) == 0) {
+    if ((x & 3) === 0) {
         x >>= 2;
         r += 2;
     }
-    if ((x & 1) == 0)++r;
+    if ((x & 1) === 0)++r;
     return r;
 }
 
@@ -982,7 +982,7 @@ function lbit(x) {
 
 function bnGetLowestSetBit() {
     for (var i = 0; i < this.t; ++i)
-    if (this[i] != 0) return i * this.DB + lbit(this[i]);
+    if (this[i] !== 0) return i * this.DB + lbit(this[i]);
     if (this.s < 0) return this.t * this.DB;
     return -1;
 }
@@ -991,7 +991,7 @@ function bnGetLowestSetBit() {
 
 function cbit(x) {
     var r = 0;
-    while (x != 0) {
+    while (x !== 0) {
         x &= x - 1;
         ++r;
     }
@@ -1011,8 +1011,8 @@ function bnBitCount() {
 
 function bnTestBit(n) {
     var j = Math.floor(n / this.DB);
-    if (j >= this.t) return (this.s != 0);
-    return ((this[j] & (1 << (n % this.DB))) != 0);
+    if (j >= this.t) return (this.s !== 0);
+    return ((this[j] & (1 << (n % this.DB))) !== 0);
 }
 
 // (protected) this op (1<<n)
@@ -1145,7 +1145,7 @@ function bnpDMultiply(n) {
 // (protected) this += n << w words, this >= 0
 
 function bnpDAddOffset(n, w) {
-    if (n == 0) return;
+    if (n === 0) return;
     while (this.t <= w) this[this.t++] = 0;
     this[w] += n;
     while (this[w] >= this.DV) {
@@ -1288,7 +1288,7 @@ function bnModPow(e, m) {
     else z = new Montgomery(m);
 
     // precomputation
-    var g = new Array(),
+    var g = [],
         n = 3,
         k1 = k - 1,
         km = (1 << k) - 1;
@@ -1316,7 +1316,7 @@ function bnModPow(e, m) {
         }
 
         n = k;
-        while ((w & 1) == 0) {
+        while ((w & 1) === 0) {
             w >>= 1;
             --n;
         }
@@ -1343,7 +1343,7 @@ function bnModPow(e, m) {
             z.mulTo(r2, g[w], r);
         }
 
-        while (j >= 0 && (e[j] & (1 << i)) == 0) {
+        while (j >= 0 && (e[j] & (1 << i)) === 0) {
             z.sqrTo(r, r2);
             t = r;
             r = r2;
@@ -1397,7 +1397,7 @@ function bnpModInt(n) {
     if (n <= 0) return 0;
     var d = this.DV % n,
         r = (this.s < 0) ? n - 1 : 0;
-    if (this.t > 0) if (d == 0) r = this[0] % n;
+    if (this.t > 0) if (d === 0) r = this[0] % n;
     else for (var i = this.t - 1; i >= 0; --i) r = (d * r + this[i]) % n;
     return r;
 }
@@ -1406,14 +1406,14 @@ function bnpModInt(n) {
 
 function bnModInverse(m) {
     var ac = m.isEven();
-    if ((this.isEven() && ac) || m.signum() == 0) return BigInteger.ZERO;
+    if ((this.isEven() && ac) || m.signum() === 0) return BigInteger.ZERO;
     var u = m.clone(),
         v = this.clone();
     var a = nbv(1),
         b = nbv(0),
         c = nbv(0),
         d = nbv(1);
-    while (u.signum() != 0) {
+    while (u.signum() !== 0) {
         while (u.isEven()) {
             u.rShiftTo(1, u);
             if (ac) {
@@ -1449,7 +1449,7 @@ function bnModInverse(m) {
             d.subTo(b, d);
         }
     }
-    if (v.compareTo(BigInteger.ONE) != 0) return BigInteger.ZERO;
+    if (v.compareTo(BigInteger.ONE) !== 0) return BigInteger.ZERO;
     if (d.compareTo(m) >= 0) return d.subtract(m);
     if (d.signum() < 0) d.addTo(m, d);
     else return d;
@@ -1476,7 +1476,7 @@ function bnIsProbablePrime(t) {
             j = i + 1;
         while (j < lowprimes.length && m < lplim) m *= lowprimes[j++];
         m = x.modInt(m);
-        while (i < j) if (m % lowprimes[i++] == 0) return false;
+        while (i < j) if (m % lowprimes[i++] === 0) return false;
     }
     return x.millerRabin(t);
 }
@@ -1495,13 +1495,13 @@ function bnpMillerRabin(t) {
         //Pick bases at random, instead of starting at 2
         a.fromInt(lowprimes[Math.floor(Math.random() * lowprimes.length)]);
         var y = a.modPow(r, this);
-        if (y.compareTo(BigInteger.ONE) != 0 && y.compareTo(n1) != 0) {
+        if (y.compareTo(BigInteger.ONE) !== 0 && y.compareTo(n1) !== 0) {
             var j = 1;
-            while (j++ < k && y.compareTo(n1) != 0) {
+            while (j++ < k && y.compareTo(n1) !== 0) {
                 y = y.modPowInt(2, this);
-                if (y.compareTo(BigInteger.ONE) == 0) return false;
+                if (y.compareTo(BigInteger.ONE) === 0) return false;
             }
-            if (y.compareTo(n1) != 0) return false;
+            if (y.compareTo(n1) !== 0) return false;
         }
     }
     return true;
@@ -1568,7 +1568,7 @@ BigInteger.prototype.square = bnSquare;
 var RSAPublicKey = function($modulus, $encryptionExponent) {
     this.modulus = new BigInteger(Hex.encode($modulus), 16);
     this.encryptionExponent = new BigInteger(Hex.encode($encryptionExponent), 16);
-}
+};
 
 var UTF8 = {
     encode: function($input) {
@@ -1592,6 +1592,7 @@ var UTF8 = {
     decode: function($input) {
         var $output = "";
         var $i = 0;
+        var $c1, $c2;
         var $c = $c1 = $c2 = 0;
         while ( $i < $input.length ) {
             $c = $input.charCodeAt($i);
@@ -1697,7 +1698,7 @@ var ASN1Data = function($data) {
             // get length
             var $length = 0;
             // ignore any null tag
-            if (($tag & 31) == 0x5) $data = $data.substr(1);
+            if (($tag & 31) === 0x5) $data = $data.substr(1);
             else {
                 if ($data.charCodeAt(0) & 128) {
                     var $lengthSize = $data.charCodeAt(0) & 127;
@@ -1766,7 +1767,8 @@ var ASN1Data = function($data) {
             return $res.join(".");
         }
         return null;
-    }
+    };
+
     this.data = this.parse($data);
 };
 
@@ -1811,7 +1813,7 @@ var RSA = {
         $buffer[--$keysize] = 0;
         return new BigInteger($buffer);
     }
-}
+};
 
 // ### End of rsa.js
 // ### Start of luhnValidation.js
@@ -1845,7 +1847,7 @@ var isValidCardNumber = function(cardNumber) {
 	}
 
 	return (mod10 == parseInt(luhnDigit));
-}
+};
 
 // ### End of luhnValidation.js
 // ### Start of pagarme.js ####
@@ -1860,7 +1862,7 @@ this.PagarMe = {
 		this.cardExpirationYear = null;
 		this.cardCVV = null;
 	},
-}
+};
 
 PagarMe.creditCard.prototype.fieldErrors = function() {
 	var errors = {};
@@ -1889,7 +1891,7 @@ PagarMe.creditCard.prototype.fieldErrors = function() {
 	}
 
 	return errors;
-}
+};
 
 PagarMe.creditCard.prototype.stringifyParameters = function() {
 	var encryptionHash = {
@@ -1897,53 +1899,91 @@ PagarMe.creditCard.prototype.stringifyParameters = function() {
 		'card_holder_name': this.cardHolderName,
 		'card_expiration_date': "" + (this.cardExpirationMonth.length == 1 ? "0" : "") + this.cardExpirationMonth + this.cardExpirationYear,
 		'card_cvv': this.cardCVV
-	}
+	};
 
 	if(PagarMe.sessionId) {
 		encryptionHash['session_id'] = PagarMe.sessionId;
 	}
 
-	var parametersArray = new Array();
+	var parametersArray = [];
 	for(var key in encryptionHash) {
 		// Values should be on UTF-8
 		parametersArray.push(key + "=" + unescape(encodeURIComponent(encryptionHash[key])));
 	}
 
 	return parametersArray.join("&");
-}
+};
 
 PagarMe.creditCard.prototype.generateHash = function(callback) {
 	if(PagarMe.encryption_key.substring(0, 2) == "ak") {
-		alert("Erro: Você está usando a api_key ao invés da encryption_key. Por favor, verifique se a chave inserida é a encryption_key disponível em seu dashboard. Para mais informações, visite: https://pagar.me/docs/restful-api/card-hash/")
+		alert("Erro: Você está usando a api_key ao invés da encryption_key. Por favor, verifique se a chave inserida é a encryption_key disponível em seu dashboard. Para mais informações, visite: https://pagar.me/docs/restful-api/card-hash/");
 		return;
 	}
 
 	var stringifiedParameters = this.stringifyParameters();
 
-	jQuery.get('https://api.pagar.me/1/transactions/card_hash_key?encryption_key=' + PagarMe.encryption_key, function(data) {
+	PagarMe.ajax('https://api.pagar.me/1/transactions/card_hash_key?encryption_key=' + PagarMe.encryption_key, function(data) {
 		var cardHashPublicKey = RSA.getPublicKey(data['public_key']);
 		var encryptedString = data.id + "_" + RSA.encrypt(stringifiedParameters, cardHashPublicKey);
 
 		callback(encryptedString);
 	});
-}
+};
 
-PagarMe.removeCardFieldsFromForm = function(form) {
-	jQuery(form.find("#card_number")[0]).remove();
-	jQuery(form.find("#card_holder_name")[0]).remove();
-	jQuery(form.find("#card_expiration_month")[0]).remove();
-	jQuery(form.find("#card_expiration_year")[0]).remove();
-	jQuery(form.find("#card_cvv")[0]).remove();
-}
+// Helper para fazer ajax sem dependencia de jQuery
+PagarMe.ajax = function (url, callback) {
+    var httpRequest,
+        xmlDoc;
 
-PagarMe.creditCard.prototype.fillFromForm = function(form) {
-	if(!form) return;
+    if (window.XMLHttpRequest) {
+        httpRequest = new XMLHttpRequest();
+    } else {
+        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+    }
 
-	this.cardNumber = jQuery(form.find("#card_number")[0]).val();
-	this.cardHolderName = jQuery(form.find("#card_holder_name")[0]).val();
-	this.cardExpirationMonth = jQuery(form.find("#card_expiration_month")[0]).val();
-	this.cardExpirationYear = jQuery(form.find("#card_expiration_year")[0]).val();
-	this.cardCVV = jQuery(form.find("#card_cvv")[0]).val();
-}
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState != 4) {
+            return;
+        }
+
+        if (httpRequest.status != 200 && httpRequest.status != 304) {
+            return;
+        }
+        callback(JSON.parse(httpRequest.responseText));
+    };
+
+    httpRequest.open("GET", url, true);
+    httpRequest.send(null);
+};
+
+PagarMe.removeCardFieldsFromForm = function (form) {
+	var input;
+
+    for (input in PagarMe.frm) {
+        if (PagarMe.frm.hasOwnProperty(input)) {
+            PagarMe.frm[input].parentNode.removeChild(PagarMe.frm[input]);
+        }
+    }
+};
+
+PagarMe.creditCard.prototype.fillFromForm = function (form) {
+	if (!form) return;
+
+    var frm = {};
+
+    frm.cardNumber = document.getElementById("card_number");
+    frm.cardHolderName = document.getElementById("card_holder_name");
+    frm.cardExpirationMonth = document.getElementById("card_expiration_month");
+    frm.cardExpirationYear = document.getElementById("card_expiration_year");
+    frm.cardCVV = document.getElementById("card_cvv");
+
+    PagarMe.frm = frm;
+
+	this.cardNumber = frm.cardNumber.value;
+	this.cardHolderName = frm.cardHolderName.value;
+	this.cardExpirationMonth = frm.cardExpirationMonth.value;
+	this.cardExpirationYear = frm.cardExpirationYear.value;
+	this.cardCVV = frm.cardCVV.value;
+};
 
 PagarMe.creditCard.prototype.fillFromFrom = PagarMe.creditCard.prototype.fillFromForm;
