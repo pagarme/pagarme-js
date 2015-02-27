@@ -161,7 +161,7 @@ PagarMe.CreditCard.prototype.fieldErrors = function() {
 		errors['card_number'] = 'Número do cartão inválido.';
 	}
 
-	if (!this.cardHolderName || this.cardHolderName.length == 0 || !isNaN(this.cardHolderName)) {
+	if (!this.cardHolderName || this.cardHolderName.length == 0 || !isNaN(this.cardHolderName) || unescape(this.cardHolderName).trim().split(' ').length <= 1) {
 		errors['card_holder_name'] = 'Nome do portador inválido.';
 	}
 

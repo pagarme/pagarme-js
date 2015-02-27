@@ -152,7 +152,7 @@ describe('PagarMe', function() {
 				errors.should.not.have.ownProperty('card_number');
 			});
 
-			it('should contain hoder name errors.', function() {
+			it('should contain holder name errors.', function() {
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_holder_name');
 
@@ -161,6 +161,10 @@ describe('PagarMe', function() {
 				errors.should.have.ownProperty('card_holder_name');
 
 				card.cardHolderName = '1234';
+				errors = card.fieldErrors();
+				errors.should.have.ownProperty('card_holder_name');
+
+				card.cardHolderName = 'John';
 				errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_holder_name');
 			});
