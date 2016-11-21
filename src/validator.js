@@ -149,9 +149,11 @@ PagarMe.Validator = {
 	isValidCpf: function(cpfNumber) {
 		cpfNumber = cpfNumber.replace(/[^0-9]+/g, '');
 
-		if (cpfNumber.length != 11) {
-			return false;
-		}
+		if (!/^[0-9]{11}$/.test(cpfNumber)) return false;
+
+		var isSameNumber = cpfNumber.match(/^(\d)\1{10}$/);
+
+		if (isSameNumber) return false;
 
 		var sum = 0;
 		var div;
