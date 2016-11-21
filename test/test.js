@@ -191,10 +191,10 @@ describe('PagarMe', function() {
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_expiration_year');
 
-				card.expirationYear = '201'; 
+				card.expirationYear = '201';
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_expiration_year');
-				
+
 				card.expirationYear = '';
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_expiration_year');
@@ -218,7 +218,7 @@ describe('PagarMe', function() {
 				card.cvv = '00';
 				errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_cvv');
-				
+
 				//Amex's cvv should have 4 digits
 				card.cardNumber = '343467796144134';
 
