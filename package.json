@@ -1,6 +1,6 @@
 {
   "name": "pagarme-js",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Pagar.me JavaScript library",
   "main": "index.js",
   "directories": {

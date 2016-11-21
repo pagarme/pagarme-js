@@ -191,10 +191,10 @@ describe('PagarMe', function() {
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_expiration_year');
 
-				card.expirationYear = '201'; 
+				card.expirationYear = '201';
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_expiration_year');
-				
+
 				card.expirationYear = '';
 				var errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_expiration_year');
@@ -218,7 +218,7 @@ describe('PagarMe', function() {
 				card.cvv = '00';
 				errors = card.fieldErrors();
 				errors.should.have.ownProperty('card_cvv');
-				
+
 				//Amex's cvv should have 4 digits
 				card.cardNumber = '343467796144134';
 
@@ -291,5 +291,21 @@ describe('PagarMe', function() {
 				});
 			});
 		});
+	});
+
+	describe('.Validator', function () {
+		describe('#isValidCpf()', function() {
+			it('should not accept 000.000.000-00', function () {
+				PagarMe.Validator.isValidCpf('000.000.000-00').should.be.equal(false);
+			})
+
+			it('should not accept 111.111.111-11', function () {
+				PagarMe.Validator.isValidCpf('111.111.111-11').should.be.equal(false);
+			})
+
+			it('should not accept 999.888.777.66', function () {
+				PagarMe.Validator.isValidCpf('999.888.777.66').should.be.equal(false);
+			})
+		})
 	});
 });
