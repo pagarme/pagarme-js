@@ -6,7 +6,8 @@ A JavaScript library to interface with Pagar.me's API, it works in the browser
 and with Node.js.
 
 <br>
-
+[![Build Status](https://travis-ci.org/pagarme/pagarme-js.svg?branch=master)](https://travis-ci.org/pagarme/pagarme-js)
+<br>
 ## Description
 
 This library covers all your needs for integrating with Pagar.me, providing:
@@ -202,4 +203,3 @@ providing stack traces as it will make digging onto the issue easier.
 The MIT License (MIT)
 Copyright (c) 2017 Pagar.me Pagamentos S/A
 ```
-
