@@ -9,6 +9,7 @@ and with Node.js.
 <a href="https://travis-ci.org/pagarme/pagarme-js" >
   <img src="https://travis-ci.org/pagarme/pagarme-js.svg?branch=master" align="left" />
 </a>
+<br>
 
 ## Description
 
