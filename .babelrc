@@ -2,6 +2,9 @@
   "presets": ["es2015"],
   "plugins": [
     "add-module-exports",
-    "ramda"
+    "ramda",
+    "pipe-operator-curry",
+    "implicit-function",
+    "function-composition"
   ]
 }
