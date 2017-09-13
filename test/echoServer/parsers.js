@@ -1,56 +1,36 @@
 import qs from 'qs'
 import {
-  concat,
-  tail,
-  pipe,
-  split,
-  head,
-  propEq,
+  T,
+  cond,
   curry,
+  head,
+  join,
+  pipe,
+  propEq,
+  split,
+  tail,
 } from 'ramda'
 
 const parsers = {
   get: {
-    url: pipe(
-      split('?'),
-      head
-    ),
-    body: pipe(
-      split('?'),
-      tail,
-      concat(''),
-      qs.parse
-    ),
+    url: split('?') & head,
+    body: split('?') & tail & join('') & qs.parse,
   },
   post: {
-    body: pipe(
-      Buffer.concat.bind(Buffer),
-      chunks => chunks.toString('utf8'),
-      JSON.parse
-    ),
+    body: Buffer.concat.bind(Buffer) & (chunks => chunks.toString('utf8')) & JSON.parse,
   },
 }
 
-const isGetRequest = propEq('method', 'GET')
-const isPutRequest = propEq('method', 'PUT')
-
-const parse = curry((chunks, req) => {
-  if (isGetRequest(req)) {
-    return {
+export default curry((chunks, req) => req
+  | cond([
+    [propEq('method', 'GET'), ~{
       url: parsers.get.url(req.url),
       body: parsers.get.body(req.url),
-    }
-  }
-  if (isPutRequest(req)) {
-    return {
+    }],
+    [propEq('method', 'PUT'), ~{
       url: parsers.get.url(req.url),
       body: parsers.post.body(chunks),
-    }
-  }
-  return {
-    url: req.url,
-    body: parsers.post.body(chunks),
-  }
-})
-
-module.exports = parse
+    }],
+    [T, ~{ url: req.url, body: parsers.post.body(chunks) }],
+  ])
+)
