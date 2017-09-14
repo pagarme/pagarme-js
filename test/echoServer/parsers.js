@@ -5,7 +5,6 @@ import {
   curry,
   head,
   join,
-  pipe,
   propEq,
   split,
   tail,

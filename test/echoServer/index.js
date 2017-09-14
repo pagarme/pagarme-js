@@ -1,7 +1,6 @@
 import http from 'http'
 
 import {
-  pipe,
   pickAll,
   mergeAll,
   of,
@@ -23,21 +22,15 @@ const server = http.createServer((req, res) => {
 
   req.on('end', () => {
     res.writeHead(200, { 'Content-Type': 'application/json' })
-
-    const headerAndMethod = pickAll(['headers', 'method'])
-
-    const respond = pipe(
-      of,
-      ap([
-        headerAndMethod,
-        parseUrlAndBody(chunks),
-      ]),
-      mergeAll,
-      JSON.stringify,
-      res.end.bind(res)
-    )
-
-    respond(req)
+    req
+      | of
+      | ap([
+          pickAll(['headers', 'method']),
+          parseUrlAndBody(chunks),
+        ])
+      | mergeAll
+      | JSON.stringify
+      | res.end.bind(res)
   })
 })
 
