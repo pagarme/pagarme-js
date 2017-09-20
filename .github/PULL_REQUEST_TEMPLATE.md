@@ -22,6 +22,5 @@ Things to cite on the PR description:
 1. My changes are well covered by **tests** and **logs**
 1. I've updated the project docs (if needed)
 1. I fell safe about this implementation
-1. I feel comfortable with the code I wrote, and I'm not ashamed to show it to my friends
 
 In a good pull request, everything above is true :relaxed:
