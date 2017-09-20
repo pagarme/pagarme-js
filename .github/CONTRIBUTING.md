@@ -49,6 +49,12 @@ Fork the repo and clone it in your machine: `git clone git@github.com:YOUR_USERN
 yarn
 ```
 
+or
+
+```sh
+npm i
+```
+
 #### Make sure the tests are passing
 
 > To run tests, you need to export API_KEY environment variable with your API key. When submitting a PR, Travis will already have it exported.
@@ -57,10 +63,22 @@ yarn
 yarn test
 ```
 
+or
+
+```sh
+npm run test
+```
+
 #### Build the project
 
 ```sh
 yarn start
+```
+
+or
+
+```sh
+npm start
 ```
 
 - Node.js build is produced inside the dist directory.
