@@ -114,22 +114,15 @@ with every call to make code more procedural:
 ```javascript
 import pagarme from 'pagarme'
 
-let client
-
 try {
-  client = yield pagarme.client.connect({
+  const client = yield pagarme.client.connect({
     email: 'user@email.com',
     password: '123456'
   })
-} catch (err) {
-  console.log('Authentication error')
-}
-
-try {
   const transactions = yield client.transactions.all()
   console.log(transactions)
 } catch (err) {
-  console.log('Error fetching transactions')
+  console.log(err.message)
 }
 ```
 
