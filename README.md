@@ -74,7 +74,7 @@ You can also use the latest release from our CDN and import the build
 directly in your HTML:
 
 ```html
-<script src="https://assets.pagar.me/pagarme-js/3.1/pagarme.min.js" />
+<script src="https://assets.pagar.me/pagarme-js/3.4/pagarme.min.js" />
 ```
 
 The library will be available as the global variable `pagarme`.
