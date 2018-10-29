@@ -19,7 +19,8 @@
     "test:unit": "run-p test:unit:server test:unit:tests",
     "test:unit:server": "env PORT=8080 babel-node ./test/echoServer",
     "test:unit:tests": "wait-on tcp:127.0.0.1:8080 && jest --verbose --maxWorkers=1",
-    "posttest:unit:tests": "killall -s INT echoServer"
+    "posttest:unit:tests": "killall -s INT echoServer",
+    "lint": "eslint './lib/**/*.js'"
   },
   "keywords": [],
   "author": "Pagar.me Pagamentos S/A",
