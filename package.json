@@ -1,5 +1,5 @@
 {
-  "name": "pagarme-js",
+  "name": "pagarme",
   "version": "2.2.2",
   "description": "Pagar.me JavaScript library",
   "main": "index.js",
