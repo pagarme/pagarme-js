@@ -6,7 +6,7 @@ describe('PagarMe', function() {
 	var form = $('<form></form>');
 
 	before(function() {
-		PagarMe.encryption_key = 'ek_test_IFkuxKMI3ticDIgoQvpJeWYCMe76c2';
+		PagarMe.encryption_key = 'ek_test_7Gx9uUsYhR515bK6i2zUtIT1ub13Fr';
 
 		addInput('card_number', form);
 		addInput('card_holder_name', form);
@@ -277,7 +277,7 @@ describe('PagarMe', function() {
 
 			it('should be able to create a transaction with the hash.', function(done) {
 				$.post('https://api.pagar.me/1/transactions', {
-					api_key: 'ak_test_Rw4JR98FmYST2ngEHtMvVf5QJW7Eoo',
+					api_key: 'ak_test_ln3zWPQUXoOoYPIcvAq1XbMbwFF204',
 					card_hash: cardHash,
 					amount: 100,
 					payment_method: 'credit_card'
