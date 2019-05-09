@@ -1,6 +1,6 @@
 {
   "name": "pagarme",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Pagar.me JavaScript library",
   "main": "index.js",
   "directories": {
@@ -8,6 +8,7 @@
   },
   "scripts": {
     "postinstall": "bower install",
+    "build": "gulp build",
     "test": "gulp build && phantomjs --web-security=no ./node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js ./test/index.html"
   },
   "repository": {
