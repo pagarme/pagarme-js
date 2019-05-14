@@ -2,7 +2,6 @@ language: node_js
 node_js:
   - "8.7"
   - "6.1"
-  - "4.8"
 
 sudo: false
 
