@@ -48,6 +48,8 @@
  */
 
 import {
+  assocPath,
+  curry,
   merge,
   map,
   ifElse,
@@ -56,6 +58,34 @@ import {
 
 import strategies from './strategies'
 import resources from '../resources'
+
+const bindOptions = options => func => func.bind(null, options)
+
+const bindRecursive = options => ifElse(
+  is(Function),
+  bindOptions(options),
+  resource => map(bindRecursive(options), resource)
+)
+
+/**
+ * Binds the `options` and `version` received as param
+ * to the client's resources.
+ *
+ * @param {Object} options
+ * @param {Object} version
+ * @returns A version of resources with its methods' first param binded to `options`
+ * and sets the header 'X-PagarMe-Version' to the version passed as param
+ */
+const withVersion = curry((options, version) => {
+  const optionsWithVersion = assocPath(
+    ['headers', 'X-PagarMe-Version'],
+    version,
+    options
+  )
+
+  const boundClientWithVersion = map(bindRecursive(optionsWithVersion), resources)
+  return boundClientWithVersion
+})
 
 /**
  * Binds the `options` received as param
@@ -66,16 +96,15 @@ import resources from '../resources'
  * @returns A version of resources with its methods' first param binded to `options`
  */
 function bindClientOptions ({ options, authentication }) {
-  const bindOptions = func => func.bind(null, options)
+  const boundClient = map(bindRecursive(options), resources)
 
-  const bindRecursive = ifElse(
-    is(Function),
-    bindOptions,
-    resource => map(bindRecursive, resource)
+  return merge(
+    boundClient,
+    {
+      authentication,
+      withVersion: withVersion(options),
+    }
   )
-
-  const boundClient = map(bindRecursive, resources)
-  return merge(boundClient, { authentication })
 }
 
 /**
@@ -118,7 +147,7 @@ export default client
 <br class="clear">
 
 <footer>
-    Documentation generated at Mon Jan 07 2019 17:07:20 GMT-0200 (-02)
+    Documentation generated at Tue May 14 2019 13:40:27 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script>prettyPrint();</script>
