@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>resources/postbacks.js - Postman Documentation</title>
+    <title>versions - Postman Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,84 +28,238 @@
 
 <div id="main">
     
-    <h1 class="page-title">resources/postbacks.js</h1>
+    <h1 class="page-title">versions</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
- * @name Postbacks
- * @description This module exposes functions
- *              related to postbacks.
- *
- * @module postbacks
- **/
+        
+            
+        
+    
+</header>
 
-import { cond, has, T, curry, both } from 'ramda'
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>This module exposes a function
+             related to the <code>/versions</code> route.</p></div>
+        
 
-import routes from '../routes'
-import request from '../request'
+        
+            
 
-const findAllInTransactions = curry((opts, body) =>
-  request.get(opts, routes.postbacks.transaction(body.transactionId), {}))
 
-const findOneInTransactions = curry((opts, body) =>
-  request.get(opts, routes.postbacks.transactionDetails(body.id, body.transactionId), {})
-)
 
-const findAllInSubscriptions = curry((opts, body) =>
-  request.get(opts, routes.postbacks.subscription(body.subscriptionId), {}))
 
-/**
- * `GET /:model/:model_id/postbacks`
- *
- * @param {Object} opts An options params which
- *                      is usually already bound
- *                      by `connect` functions.
- *
- * @param {Object} body The payload for the request.
- * {@link https://pagarme.readme.io/v1/reference#retornando-um-postback|API Reference for this payload}
- * @param {Number} [body.id] The operation ID. If not sent a
- * @param {Number} [body.transactionId] A transaction ID to get all
- *                                      the operations.
- * @param {Number} [body.subscriptionId] A subscription ID
-*/
-const find = (opts, body) =>
-  cond([
-    [both(has('transactionId'), has('id')), findOneInTransactions(opts)],
-    [has('transactionId'), findAllInTransactions(opts)],
-    [has('subscriptionId'), findAllInSubscriptions(opts)],
-    [T, findAllInTransactions(opts)],
-  ])(body)
 
-/**
- * `POST /:model/:model_id/postbacks/:id/redeliver`
- * Redeliver a POSTback for a model
- *
- * @param {Object} opts An options params which
- *                      is usually already bound
- *                      by `connect` functions.
- *
- * @param {Object} body The payload for the request.
- * {@link https://pagarme.readme.io/v1/reference#reenviando-um-postback|API Reference for this payload}
- * @param {Number} body.id The operation ID.
- * @param {Number} body.subscriptionId A subscription ID
-*/
-const redeliver = (opts, body) =>
-  request.post(opts, routes.postbacks.redeliver(body.subscriptionId, body.id), {})
 
-export default {
-  find,
-  redeliver,
-}
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_versions.js.html">resources/versions.js</a>, <a href="resources_versions.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="~versions"><span class="type-signature">(inner) </span>versions<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /versions</code>
+Returns the available versions from API.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_versions.js.html">resources/versions.js</a>, <a href="resources_versions.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the available versions
+                  from API.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

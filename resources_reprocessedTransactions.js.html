@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>resources/postbacks.js - Postman Documentation</title>
+    <title>resources/reprocessedTransactions.js - Postman Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">resources/postbacks.js</h1>
+    <h1 class="page-title">resources/reprocessedTransactions.js</h1>
     
 
     
@@ -39,69 +39,38 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * @name Postbacks
+ * @name Reprocessed Transactions
  * @description This module exposes functions
- *              related to postbacks.
+ *              related to the `/reprocessed_transactions` path.
  *
- * @module postbacks
+ * @module reprocessedTransactions
  **/
-
-import { cond, has, T, curry, both } from 'ramda'
 
 import routes from '../routes'
 import request from '../request'
 
-const findAllInTransactions = curry((opts, body) =>
-  request.get(opts, routes.postbacks.transaction(body.transactionId), {}))
-
-const findOneInTransactions = curry((opts, body) =>
-  request.get(opts, routes.postbacks.transactionDetails(body.id, body.transactionId), {})
-)
-
-const findAllInSubscriptions = curry((opts, body) =>
-  request.get(opts, routes.postbacks.subscription(body.subscriptionId), {}))
-
 /**
- * `GET /:model/:model_id/postbacks`
+ * `GET /reprocessed_transactions`
+ * Find reprocessed transactions
  *
  * @param {Object} opts An options params which
  *                      is usually already bound
  *                      by `connect` functions.
  *
- * @param {Object} body The payload for the request.
- * {@link https://pagarme.readme.io/v1/reference#retornando-um-postback|API Reference for this payload}
- * @param {Number} [body.id] The operation ID. If not sent a
- * @param {Number} [body.transactionId] A transaction ID to get all
- *                                      the operations.
- * @param {Number} [body.subscriptionId] A subscription ID
-*/
-const find = (opts, body) =>
-  cond([
-    [both(has('transactionId'), has('id')), findOneInTransactions(opts)],
-    [has('transactionId'), findAllInTransactions(opts)],
-    [has('subscriptionId'), findAllInSubscriptions(opts)],
-    [T, findAllInTransactions(opts)],
-  ])(body)
-
-/**
- * `POST /:model/:model_id/postbacks/:id/redeliver`
- * Redeliver a POSTback for a model
+ * @param {Object} query The query object to be sent.
+ * @param {Integer} query.transaction_id Transaction ID.
+ * @param {Integer} query.original_transaction_id Original transaction ID.
+ * @param {String} query.starting_at Starting at date (eg. 2019-09-06).
+ * @param {String} query.ending_at Ending at date (eg. 2036-09-06).
  *
- * @param {Object} opts An options params which
- *                      is usually already bound
- *                      by `connect` functions.
- *
- * @param {Object} body The payload for the request.
- * {@link https://pagarme.readme.io/v1/reference#reenviando-um-postback|API Reference for this payload}
- * @param {Number} body.id The operation ID.
- * @param {Number} body.subscriptionId A subscription ID
-*/
-const redeliver = (opts, body) =>
-  request.post(opts, routes.postbacks.redeliver(body.subscriptionId, body.id), {})
+ * @returns {Promise} Resolves to the result of
+ *                    the request or to an error.
+ */
+const find = (opts, query) =>
+  request.get(opts, routes.reprocessedTransactions, query)
 
 export default {
   find,
-  redeliver,
 }
 </code></pre>
         </article>
