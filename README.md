@@ -210,5 +210,5 @@ providing stack traces as it will make digging onto the issue easier.
 
 ```
 The MIT License (MIT)
-Copyright (c) 2017 Pagar.me Pagamentos S/A..
+Copyright (c) 2017 Pagar.me Pagamentos S/A.
 ```
