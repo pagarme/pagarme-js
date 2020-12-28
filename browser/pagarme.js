@@ -10541,6 +10541,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return _request2.default.get(opts, _routes2.default.company.fees);
 	};
 	
+	/* eslint-disable */
+	
 	/**
 	 * `PUT /company/anticipation`
 	 * Sets the delay for the automatic anticipation based on the options
@@ -10559,7 +10561,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *                    a confirmation or to an error.
 	 **/
 	var updateAnticipation = function updateAnticipation(opts, body) {
-	  return _request2.default.put(opts, _routes2.default.company.anticipation.base, body);
+	  return new Promise(function (resolve) {
+	    console.log('>>> CALL TO updateAnticipation', body);
+	    resolve();
+	  });
 	};
 	
 	/**
@@ -10575,8 +10580,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *                    or to an error.
 	 **/
 	var anticipationOptions = function anticipationOptions(opts) {
-	  return _request2.default.get(opts, _routes2.default.company.anticipation.options);
+	  return new Promise(function (resolve) {
+	    console.log('>>> CALL TO anticipationOptions');
+	    return resolve([{ "delay": 15, "fee": 1.59 }, { "delay": 30, "fee": 1.29 }]);
+	  });
 	};
+	
+	/* eslint-enable */
 	
 	exports.default = {
 	  create: create,
