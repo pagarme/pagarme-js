@@ -89,3 +89,20 @@ workflows:
         - build-node8
         - build-node6
 
+    publish:
+      jobs:
+        - publish-npm:
+            filters:
+              tags:
+                only: /^([0-9]+).([0-9]+).([0-9]+)$/
+              branches:
+                ignore: /.*/
+        - update-docs:
+            requires:
+              - "publish-npm"
+            filters:
+              tags:
+                only: /^([0-9]+).([0-9]+).([0-9]+)$/
+              branches:
+                ignore: /.*/
+
