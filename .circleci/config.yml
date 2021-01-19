@@ -20,18 +20,22 @@ jobs:
           root: ~/repo
           paths:
             - ./
+
   build-node10:
     <<: *common-build
     docker:
       - image: circleci/node:10
+
   build-node8:
     <<: *common-build
     docker:
       - image: circleci/node:8
+
   build-node6:
     <<: *common-build
     docker:
       - image: circleci/node:6
+
   sonar:
       working_directory: ~/repo
       machine:
@@ -50,6 +54,15 @@ jobs:
               sudo sed -i 's/\/home\/circleci\/repo\//\/usr\/src\//g' coverage/lcov.info
               docker run -ti -v $(pwd):/usr/src/ pagarme/sonar-scanner -Dsonar.branch.name=$CIRCLE_BRANCH
 
+  publish:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run: yarn
+      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run: npm publish
 workflows:
     build:
       jobs:
