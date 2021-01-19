@@ -54,7 +54,20 @@ jobs:
               sudo sed -i 's/\/home\/circleci\/repo\//\/usr\/src\//g' coverage/lcov.info
               docker run -ti -v $(pwd):/usr/src/ pagarme/sonar-scanner -Dsonar.branch.name=$CIRCLE_BRANCH
 
-  publish:
+  update-docs:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - add_ssh_keys
+      - run: yarn
+      - run: git config --global user.email "github-bot@pagar.me"
+      - run: git config --global user.name "github-pages[bot]"
+      - run: npm run predocs:bump
+      - run: npm run docs:bump
+
+  publish-npm:
     working_directory: ~/repo
     docker:
       - image: circleci/node:lts
@@ -63,6 +76,7 @@ jobs:
       - run: yarn
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - run: npm publish
+
 workflows:
     build:
       jobs:
