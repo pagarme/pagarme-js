@@ -8692,7 +8692,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	__webpack_require__(100);
 	
-	var version =  true ? ("4.16.0") : '';
+	var version =  true ? ("4.16.1") : '';
 	
 	var defaultHeaders = {
 	  'Content-Type': 'application/json',
@@ -10655,13 +10655,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	function execute(_ref) {
 	  var sessionId = _ref.session_id,
 	      environment = _ref.environment,
+	      impersonationKey = _ref.impersonationKey,
 	      options = _ref.options,
 	      skipAuthentication = _ref.skipAuthentication;
 	
 	  var headers = environment === 'live' ? { 'X-Live': 1 } : {};
 	
+	  var body = {
+	    session_id: sessionId
+	  };
+	
+	  if (impersonationKey) {
+	    body.impersonation_key = impersonationKey;
+	  }
+	
 	  var opts = (0, _merge2.default)(options, {
-	    body: { session_id: sessionId },
+	    body: body,
 	    headers: headers
 	  });
 	
