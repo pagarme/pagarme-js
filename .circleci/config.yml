@@ -12,6 +12,7 @@ jobs:
       - run: yarn
       - run: yarn lint
       - run: yarn test
+      - run: yarn build
       - save_cache:
           paths:
             - node_modules
@@ -20,18 +21,22 @@ jobs:
           root: ~/repo
           paths:
             - ./
+
   build-node10:
     <<: *common-build
     docker:
       - image: circleci/node:10
+
   build-node8:
     <<: *common-build
     docker:
       - image: circleci/node:8
+
   build-node6:
     <<: *common-build
     docker:
       - image: circleci/node:6
+
   sonar:
       working_directory: ~/repo
       machine:
@@ -50,6 +55,29 @@ jobs:
               sudo sed -i 's/\/home\/circleci\/repo\//\/usr\/src\//g' coverage/lcov.info
               docker run -ti -v $(pwd):/usr/src/ pagarme/sonar-scanner -Dsonar.branch.name=$CIRCLE_BRANCH
 
+  update-docs:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - add_ssh_keys
+      - run: yarn
+      - run: git config --global user.email "github-bot@pagar.me"
+      - run: git config --global user.name "github-pages[bot]"
+      - run: npm run predocs:bump
+      - run: npm run docs:bump
+
+  publish-npm:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run: yarn
+      - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run: npm publish
+
 workflows:
     build:
       jobs:
@@ -61,4 +89,21 @@ workflows:
         - build-node10
         - build-node8
         - build-node6
+
+    publish:
+      jobs:
+        - publish-npm:
+            filters:
+              tags:
+                only: /^([0-9]+).([0-9]+).([0-9]+)$/
+              branches:
+                ignore: /.*/
+        - update-docs:
+            requires:
+              - "publish-npm"
+            filters:
+              tags:
+                only: /^([0-9]+).([0-9]+).([0-9]+)$/
+              branches:
+                ignore: /.*/
 
