@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>onboardingAnswers - Postman Documentation</title>
+    <title>feePresets - Postman Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">onboardingAnswers</h1>
+    <h1 class="page-title">feePresets</h1>
     
 
     
@@ -51,7 +51,7 @@
     
         
             <div class="description"><p>This module exposes functions
-             related to the '/onboarding_answers' path.</p></div>
+             related to the '/fee_presets' path.</p></div>
         
 
         
@@ -100,7 +100,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_onboardingAnswers.js.html">resources/onboardingAnswers.js</a>, <a href="resources_onboardingAnswers.js.html#line1">line 1</a>
+        <a href="resources_feePresets.js.html">resources/feePresets.js</a>, <a href="resources_feePresets.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -150,15 +150,15 @@
 
     
 
-    <h4 class="name" id="~all"><span class="type-signature">(inner) </span>all<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="~find"><span class="type-signature">(inner) </span>find<span class="signature">(opts, body)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p><code>GET /onboarding_answers</code>
-Makes a request to /onboarding_answers to get all answers</p>
+    <p><code>GET /fee_presets/:id</code>
+Returns the requested fee preset.</p>
 </div>
 
 
@@ -211,165 +211,8 @@ Makes a request to /onboarding_answers to get all answers</p>
             
 
             <td class="description last"><p>An options params which
-                     is usually already bound
-                     by <code>connect</code> functions.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_onboardingAnswers.js.html">resources/onboardingAnswers.js</a>, <a href="resources_onboardingAnswers.js.html#line40">line 40</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Resolves to the result of
-                   the request or to an error.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~create"><span class="type-signature">(inner) </span>create<span class="signature">(opts, body)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p><code>POST /onboarding_answers</code>
-Creates a onboarding answer from the given payload.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An options params which
-                     is usually already bound
-                     by <code>connect</code> functions.</p></td>
+                       is usually already bound
+                       by <code>connect</code> functions.</p></td>
         </tr>
 
     
@@ -392,122 +235,9 @@ Creates a onboarding answer from the given payload.</p>
 
             
 
-            <td class="description last"><p>The payload for the request.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_onboardingAnswers.js.html">resources/onboardingAnswers.js</a>, <a href="resources_onboardingAnswers.js.html#line26">line 26</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Resolves to the result of
-                   the request or to an error.</p>
-</div>
-
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~destroy"><span class="type-signature">(inner) </span>destroy<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-<div class="description">
-    <p><code>DELETE /onboarding_answers/:id</code>
-Deletes an onboarding answer</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
+            <td class="description last"><p>The payload for the request</p>
+                <h6>Properties</h6>
+                
 
 <table class="params">
     <thead>
@@ -518,8 +248,6 @@ Deletes an onboarding answer</p>
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -533,40 +261,7 @@ Deletes an onboarding answer</p>
 
         <tr>
             
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>An options params which
-                     is usually already bound
-                     by <code>connect</code> functions.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>body.id</code></td>
+                <td class="name"><code>id</code></td>
             
 
             <td class="type">
@@ -579,20 +274,17 @@ Deletes an onboarding answer</p>
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>The onboarding answer ID.</p></td>
+            <td class="description last"><p>The fee preset ID</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -633,7 +325,7 @@ Deletes an onboarding answer</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_onboardingAnswers.js.html">resources/onboardingAnswers.js</a>, <a href="resources_onboardingAnswers.js.html#line56">line 56</a>
+        <a href="resources_feePresets.js.html">resources/feePresets.js</a>, <a href="resources_feePresets.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
