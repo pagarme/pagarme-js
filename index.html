@@ -47,8 +47,9 @@
 
 
     <section class="readme">
-        <article><p><img src="https://avatars1.githubusercontent.com/u/3846050?v=4&s=200" width="127px" height="127px" align="left"/></p>
-<h1>Pagar.me JavaScript</h1><p><a href="https://sonarcloud.io/dashboard?id=pagarme-js"><img src="https://sonarcloud.io/api/project_badges/measure?project=pagarme-js&amp;metric=alert_status&amp;token=ae3e29f50b71ed248ae33abeda6210e8f076a774" alt="Quality Gate Status"></a>
+        <article><img src="https://avatars1.githubusercontent.com/u/3846050?v=4&s=200" width="127px" height="127px" align="left"/>
+<h1>Pagar.me JavaScript</h1>
+<p><a href="https://sonarcloud.io/dashboard?id=pagarme-js"><img src="https://sonarcloud.io/api/project_badges/measure?project=pagarme-js&amp;metric=alert_status&amp;token=ae3e29f50b71ed248ae33abeda6210e8f076a774" alt="Quality Gate Status"></a>
 <a href="https://sonarcloud.io/dashboard?id=pagarme-js"><img src="https://sonarcloud.io/api/project_badges/measure?project=pagarme-js&amp;metric=code_smells&amp;token=ae3e29f50b71ed248ae33abeda6210e8f076a774" alt="Code Smells"></a>
 <a href="https://sonarcloud.io/dashboard?id=pagarme-js"><img src="https://sonarcloud.io/api/project_badges/measure?project=pagarme-js&amp;metric=coverage&amp;token=ae3e29f50b71ed248ae33abeda6210e8f076a774" alt="Coverage"></a>
 <a href="https://sonarcloud.io/dashboard?id=pagarme-js"><img src="https://sonarcloud.io/api/project_badges/measure?project=pagarme-js&amp;metric=sqale_rating&amp;token=ae3e29f50b71ed248ae33abeda6210e8f076a774" alt="Maintainability Rating"></a>
@@ -56,31 +57,53 @@
 <p>A JavaScript library to interface with Pagar.me's API, it works in the browser
 and with Node.js.</p>
 <p>The documentation can be found in our <a href="https://pagarme.github.io/pagarme-js">JSDocs</a></p>
-<h2>Description</h2><p>This library covers all your needs for integrating with Pagar.me, providing:</p>
+<h2>Description</h2>
+<p>This library covers all your needs for integrating with Pagar.me, providing:</p>
 <ul>
 <li>A clean Promise-based interface for all endpoints in Pagarme's API</li>
 <li>A fast way to generate card hashes</li>
 <li>Postback signature validation</li>
 <li>Documents validations (CPF, CNPJ, and others)</li>
 </ul>
-<h2>How to use</h2><p>First, install it:</p>
-<pre class="prettyprint source lang-bash"><code>yarn add pagarme</code></pre><p>Or using npm:</p>
-<pre class="prettyprint source lang-bash"><code>npm install pagarme</code></pre><p>Pagar.me's JavaScript library can be used in three ways:</p>
-<h3>Node.js</h3><p>Import like usual:</p>
-<pre class="prettyprint source lang-js"><code>import pagarme from 'pagarme'</code></pre><p>also works using <code>require</code>:</p>
-<pre class="prettyprint source lang-js"><code>const pagarme = require('pagarme')</code></pre><h3>Browser (CommonJS)</h3><p>Import the browser build:</p>
-<pre class="prettyprint source lang-js"><code>import pagarme from 'pagarme/browser'</code></pre><p>also works using <code>require</code>:</p>
-<pre class="prettyprint source lang-js"><code>const pagarme = require('pagarme/browser')</code></pre><h3>Browser (Global Variable)</h3><p>You can also use the latest release from our CDN and import the build
+<h2>How to use</h2>
+<p>First, install it:</p>
+<pre class="prettyprint source lang-bash"><code>yarn add pagarme
+</code></pre>
+<p>Or using npm:</p>
+<pre class="prettyprint source lang-bash"><code>npm install pagarme
+</code></pre>
+<p>Pagar.me's JavaScript library can be used in three ways:</p>
+<h3>Node.js</h3>
+<p>Import like usual:</p>
+<pre class="prettyprint source lang-js"><code>import pagarme from 'pagarme'
+</code></pre>
+<p>also works using <code>require</code>:</p>
+<pre class="prettyprint source lang-js"><code>const pagarme = require('pagarme')
+</code></pre>
+<h3>Browser (CommonJS)</h3>
+<p>Import the browser build:</p>
+<pre class="prettyprint source lang-js"><code>import pagarme from 'pagarme/browser'
+</code></pre>
+<p>also works using <code>require</code>:</p>
+<pre class="prettyprint source lang-js"><code>const pagarme = require('pagarme/browser')
+</code></pre>
+<h3>Browser (Global Variable)</h3>
+<p>You can also use the latest release from our CDN and import the build
 directly in your HTML:</p>
-<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://assets.pagar.me/pagarme-js/4.11/pagarme.min.js&quot; /></code></pre><p>The library will be available as the global variable <code>pagarme</code>.</p>
-<h2>API Docs</h2><p>This library provides a promise based interface for all functions. Before you
+<pre class="prettyprint source lang-html"><code>&lt;script src=&quot;https://assets.pagar.me/pagarme-js/4.11/pagarme.min.js&quot; />
+</code></pre>
+<p>The library will be available as the global variable <code>pagarme</code>.</p>
+<h2>API Docs</h2>
+<p>This library provides a promise based interface for all functions. Before you
 can use the library, you need to provide authentication details which will be
 used through API calls.</p>
 <p>For a detailed documentation, see our <a href="https://pagarme.github.io/pagarme-js">JSDocs</a>.</p>
-<h3>Client API</h3><p>All of Pagar.me's REST API endpoints are covered in the <code>client</code> object. Every
+<h3>Client API</h3>
+<p>All of Pagar.me's REST API endpoints are covered in the <code>client</code> object. Every
 function call issued to <code>client</code> will return a <code>Promise</code> which represents and
 manages the result's lifecycle.</p>
-<h3>Using <code>connect</code></h3><p>When you call <code>connect</code>, a <code>Promise</code> which resolves to a <code>client</code> or an
+<h3>Using <code>connect</code></h3>
+<p>When you call <code>connect</code>, a <code>Promise</code> which resolves to a <code>client</code> or an
 error will be returned. If an authentication error happens, you can catch
 the error with the <code>Promise</code> interface:</p>
 <pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
@@ -88,7 +111,9 @@ the error with the <code>Promise</code> interface:</p>
 pagarme.client.connect({ email: 'user@email.com', password: '123456' })
   .then(client => client.transactions.all())
   .then(transactions => console.log(transactions))
-  .catch(error => console.error(error))</code></pre><p>As the entire library is based on promises, you can also use ES6 generators
+  .catch(error => console.error(error))
+</code></pre>
+<p>As the entire library is based on promises, you can also use ES6 generators
 with every call to make code more procedural:</p>
 <pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
 
@@ -108,17 +133,23 @@ try {
   console.log(transactions)
 } catch (err) {
   console.log('Error fetching transactions')
-}</code></pre><p>The downside of this approach is that you need to handle errors using try/catch.</p>
+}
+</code></pre>
+<p>The downside of this approach is that you need to handle errors using try/catch.</p>
 <p>Pagar.me authorizes clients in various fashions. This library handles all
 available authentication strategies:</p>
-<h4>Using API key:</h4><pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
+<h4>Using API key:</h4>
+<pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
 
 pagarme.client.connect({ api_key: 'ak_test_y7jk294ynbzf93' })
   .then(client => client.transactions.all())
-  .then(transactions => console.log(transactions))</code></pre><blockquote>
+  .then(transactions => console.log(transactions))
+</code></pre>
+<blockquote>
 <p>:warning: Never use API keys in the browser, you should use encryption keys instead.</p>
 </blockquote>
-<h4>Using encryption key:</h4><pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
+<h4>Using encryption key:</h4>
+<pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
 
 const card = {
   card_number: '4111111111111111',
@@ -129,21 +160,29 @@ const card = {
 
 pagarme.client.connect({ encryption_key: 'ek_test_y7jk294ynbzf93' })
   .then(client => client.security.encrypt(card))
-  .then(card_hash => console.log(card_hash))</code></pre><h4>Using email and password:</h4><pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
+  .then(card_hash => console.log(card_hash))
+</code></pre>
+<h4>Using email and password:</h4>
+<pre class="prettyprint source lang-javascript"><code>import pagarme from 'pagarme'
 
 pagarme.client.connect({ email: 'user@email.com', password: '123456' })
   .then(client => client.transactions.all())
-  .then(transactions => console.log(transactions))</code></pre><h2>Building</h2><p>To build the library, use <code>npm start</code>.</p>
+  .then(transactions => console.log(transactions))
+</code></pre>
+<h2>Building</h2>
+<p>To build the library, use <code>npm start</code>.</p>
 <ul>
 <li>Node.js build is produced inside the <code>dist</code> directory.</li>
 <li>Browser build is produced inside the <code>browser</code> directory.</li>
 </ul>
-<h2>Testing</h2><p>To run the library tests, use <code>npm test</code>.</p>
+<h2>Testing</h2>
+<p>To run the library tests, use <code>npm test</code>.</p>
 <blockquote>
 <p>To run tests, you need to export <code>API_KEY</code> environment variable with your
 API key. When submitting a PR, Travis will already have it exported.</p>
 </blockquote>
-<h2>Contributing</h2><p>Community contributions are essential for keeping this library great. We
+<h2>Contributing</h2>
+<p>Community contributions are essential for keeping this library great. We
 simply can't access the huge number of platforms and myriad configurations
 for running it, so if you find any problems, feel free to open an issue.</p>
 <p>Be sure to provide at least the following information on the issue:</p>
@@ -154,8 +193,10 @@ for running it, so if you find any problems, feel free to open an issue.</p>
 </ul>
 <p>We provide source maps to ease debugging. Use them whenever possible when
 providing stack traces as it will make digging onto the issue easier.</p>
-<h2>License</h2><pre class="prettyprint source"><code>The MIT License (MIT)
-Copyright (c) 2017 Pagar.me Pagamentos S/A</code></pre></article>
+<h2>License</h2>
+<pre class="prettyprint source"><code>The MIT License (MIT)
+Copyright (c) 2017 Pagar.me Pagamentos S/A
+</code></pre></article>
     </section>
 
 
@@ -168,7 +209,7 @@ Copyright (c) 2017 Pagar.me Pagamentos S/A</code></pre></article>
 <br class="clear">
 
 <footer>
-    Documentation generated at Tue Jun 01 2021 17:58:01 GMT-0300 (-03)
+    Documentation generated at Fri Jun 04 2021 15:11:36 GMT-0300 (Brasilia Standard Time)
 </footer>
 
 <script>prettyPrint();</script>
