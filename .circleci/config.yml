@@ -20,18 +20,14 @@ jobs:
           root: ~/repo
           paths:
             - ./
+  build-node12:
+    <<: *common-build
+    docker:
+      - image: circleci/node:12
   build-node10:
     <<: *common-build
     docker:
       - image: circleci/node:10
-  build-node8:
-    <<: *common-build
-    docker:
-      - image: circleci/node:8
-  build-node6:
-    <<: *common-build
-    docker:
-      - image: circleci/node:6
   sonar:
       working_directory: ~/repo
       machine:
@@ -58,7 +54,6 @@ workflows:
             context: dockerhub
             requires:
               - build-node-lts
+        - build-node12
         - build-node10
-        - build-node8
-        - build-node6
 
