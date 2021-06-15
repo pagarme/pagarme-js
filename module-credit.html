@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>customers - Postman Documentation</title>
+    <title>credit - Postman Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">customers</h1>
+    <h1 class="page-title">credit</h1>
     
 
     
@@ -51,7 +51,7 @@
     
         
             <div class="description"><p>This module exposes functions
-related to the <code>/customers</code> path.</p></div>
+related to the '/credit' path.</p></div>
         
 
         
@@ -100,7 +100,7 @@ related to the <code>/customers</code> path.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_customers.js.html">resources/customers.js</a>, <a href="resources_customers.js.html#line1">line 1</a>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -141,203 +141,20 @@ related to the <code>/customers</code> path.</p></div>
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         
             
+<h4 class="name" id="~findAllLoans"><span class="type-signature">(inner, constant) </span>findAllLoans<span class="type-signature"></span></h4>
 
-    
-
-    <h4 class="name" id="~all"><span class="type-signature">(inner) </span>all<span class="signature">(opts, body)</span><span class="type-signature"></span></h4>
-
-    
 
 
 
 <div class="description">
-    <p><code>GET /customers</code>
-Returns company's customers</p>
+    <p><code>GET /credit/loans</code></p>
+<p>Returns all loans</p>
 </div>
 
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>opts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>An options params which
-is usually already bound
-by <code>connect</code> functions.</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>body</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The payload for the request.
-<a href="https://pagarme.readme.io/v1/reference#retornando-clientes">API Reference for this payload</a></p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Pagination option to get a list of customers.
-Number of customers in a page</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>page</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Pagination option for a list of customers.
-The page index.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -373,7 +190,7 @@ The page index.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_customers.js.html">resources/customers.js</a>, <a href="resources_customers.js.html#line61">line 61</a>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line104">line 104</a>
     </li></ul></dd>
     
 
@@ -389,10 +206,63 @@ The page index.</p></td>
 
 
 
+        
+            
+<h4 class="name" id="~findOneLoan"><span class="type-signature">(inner, constant) </span>findOneLoan<span class="type-signature"></span></h4>
 
 
 
 
+<div class="description">
+    <p><code>GET /credit/loans/:loanId</code></p>
+<p>Returns the requested loan</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line119">line 119</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
 
@@ -400,19 +270,25 @@ The page index.</p></td>
 
 
         
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
             
 
     
 
-    <h4 class="name" id="~create"><span class="type-signature">(inner) </span>create<span class="signature">(opts, body)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="~acceptProposal"><span class="type-signature">(inner) </span>acceptProposal<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p><code>POST /customers</code>
-Creates a customer from the given payload</p>
+    <p><code>POST /credit/credit_lines/:creditLineId/proposals/:proposalId/accept</code></p>
+<p>Accepts a proposal</p>
 </div>
 
 
@@ -473,13 +349,13 @@ by <code>connect</code> functions.</p></td>
 
         <tr>
             
-                <td class="name"><code>body</code></td>
+                <td class="name"><code>body.creditLineId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">String</span>
 
 
             
@@ -489,8 +365,30 @@ by <code>connect</code> functions.</p></td>
 
             
 
-            <td class="description last"><p>The payload for the request
-<a href="https://pagarme.readme.io/v1/reference#criando-um-cliente">API Reference for this payload</a></p></td>
+            <td class="description last"><p>The credit line's ID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.proposalId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The proposal's ID</p></td>
         </tr>
 
     
@@ -531,7 +429,7 @@ by <code>connect</code> functions.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_customers.js.html">resources/customers.js</a>, <a href="resources_customers.js.html#line77">line 77</a>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -585,15 +483,15 @@ the request or to an error.</p>
 
     
 
-    <h4 class="name" id="~find"><span class="type-signature">(inner) </span>find<span class="signature">(opts, body)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~createProposal"><span class="type-signature">(inner) </span>createProposal<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
 
 <div class="description">
-    <p><code>GET /customers</code>
-Makes a request to /customers or to /customers/:id</p>
+    <p><code>POST /credit/credit_lines/:creditLineId/proposals</code></p>
+<p>Creates a proposals based on credit line.</p>
 </div>
 
 
@@ -654,13 +552,13 @@ by <code>connect</code> functions.</p></td>
 
         <tr>
             
-                <td class="name"><code>body</code></td>
+                <td class="name"><code>body.creditLineId</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">String</span>
 
 
             
@@ -670,138 +568,30 @@ by <code>connect</code> functions.</p></td>
 
             
 
-            <td class="description last"><p>The payload for the request
-<a href="https://pagarme.readme.io/v1/reference#retornando-dados-do-cliente">API Reference for this payload</a></p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>The customer ID. If not sent, a
-customer list will be returned instead.</p></td>
+            <td class="description last"><p>The credit line's ID</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>count</code></td>
+                <td class="name"><code>body.amount</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">String</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last"><p>Pagination option for customer list.
-Number of customers in a page</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>page</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Pagination option for customer list.
-The page index.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
+            <td class="description last"><p>The proposal amount</p></td>
         </tr>
 
     
@@ -842,7 +632,7 @@ The page index.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="resources_customers.js.html">resources/customers.js</a>, <a href="resources_customers.js.html#line40">line 40</a>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line57">line 57</a>
     </li></ul></dd>
     
 
@@ -865,6 +655,1324 @@ The page index.</p></td>
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~dailyStatement"><span class="type-signature">(inner) </span>dailyStatement<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /credit/loans/:loanId/statements/daily</code></p>
+<p>Returns the daily statements of the given loan</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An options params which
+is usually already bound
+by <code>connect</code> functions.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.loanId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The optional loan's ID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Pagination option to get a list of plans.
+Number of plans in a page</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Pagination option for a list of plans.
+The page index.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line158">line 158</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~findAllCreditLines"><span class="type-signature">(inner) </span>findAllCreditLines<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /credit/credit_lines</code></p>
+<p>Returns all credit lines.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An options params which
+is usually already bound
+by <code>connect</code> functions.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~findLoans"><span class="type-signature">(inner) </span>findLoans<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /credit/loans</code> OR <code>GET /credit/loans/:loanId</code></p>
+<p>Returns the requested loan if the loan's ID is passed; otherwise returns all loans.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An options params which
+is usually already bound
+by <code>connect</code> functions.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.loanId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The optional loan's ID</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line134">line 134</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~findOneProposal"><span class="type-signature">(inner) </span>findOneProposal<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /credit/credit_lines/:creditLineId/proposals/:proposalId</code></p>
+<p>Returns requested proposal.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An options params which
+is usually already bound
+by <code>connect</code> functions.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.creditLineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The credit line's ID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.proposalId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The proposal's ID</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line41">line 41</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~monthlyStatement"><span class="type-signature">(inner) </span>monthlyStatement<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /credit/loans/:loanId/statements/monthly</code></p>
+<p>Returns the monthly statements of the given loan</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>An options params which
+is usually already bound
+by <code>connect</code> functions.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.loanId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The optional loan's ID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.count</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Pagination option to get a list of plans.
+Number of plans in a page</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.page</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Pagination option for a list of plans.
+The page index.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line179">line 179</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~settlementForecast"><span class="type-signature">(inner) </span>settlementForecast<span class="signature">(opts)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p><code>GET /credit/credit_lines/:creditLineId/proposals/:proposalId/settlement_forecast</code></p>
+<p>Returns the settlement forecast from the given proposal</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>opts</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>An options params which
+is usually already bound
+by <code>connect</code> functions.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.creditLineId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The credit line's ID</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>body.proposalId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The proposal's ID</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="resources_credit.js.html">resources/credit.js</a>, <a href="resources_credit.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Resolves to the result of
+the request or to an error.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
