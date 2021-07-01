@@ -8370,7 +8370,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  anticipation: {
 	    base: '/company/anticipation',
 	    options: '/company/anticipation/options'
-	  }
+	  },
+	  apiKey: '/company/api_key'
 	};
 	
 	var splitRules = {
@@ -10658,6 +10659,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return _request2.default.get(opts, _routes2.default.company.anticipation.options);
 	};
 	
+	/**
+	 * `GET /company/api_key`
+	 * Return company api key (sandbox and live)
+	 *
+	 * @param {Object} opts An options params which
+	 *                      is usually already bound
+	 *                      by `connect` functions.
+	 *
+	 * @returns {Promise} A promise that resolves to
+	 *                    the newly created company's
+	 *                    data or to an error.
+	 **/
+	var apiKey = function apiKey(opts) {
+	  return _request2.default.get(opts, _routes2.default.company.apiKey);
+	};
+	
 	exports.default = {
 	  create: create,
 	  createTemporary: createTemporary,
@@ -10671,7 +10688,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  emailTemplates: emailTemplates,
 	  fees: fees,
 	  updateAnticipation: updateAnticipation,
-	  anticipationOptions: anticipationOptions
+	  anticipationOptions: anticipationOptions,
+	  apiKey: apiKey
 	};
 	module.exports = exports['default'];
 
